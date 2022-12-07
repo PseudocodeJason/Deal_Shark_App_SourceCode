@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
+import apiSearch from "./apiSearch";
 //Reducers
 
 
 
-export default combineReducers({});
+export default combineReducers({apiSearch});
