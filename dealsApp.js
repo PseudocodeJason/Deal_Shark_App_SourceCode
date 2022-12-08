@@ -80,13 +80,15 @@ const SearchScreen = ({ navigation, route, SearchGameTitle, apiList }) => {
 
 const GameScreen = ({ navigation, route, game, SearchGameID }) => {
     const { gameID } = route.params
-    const [search, setSearch] = useState("")
     const [title, setTitle] = useState("")
 
     useEffect(() => {
         fetch("https://www.cheapshark.com/api/1.0/games?id=" + gameID)
             .then((res) => res.json())
-            .then((json) => SearchGameID(json))
+            .then((json) => {
+                SearchGameID(json)
+                setTitle(json.info.title)
+            })
     }, [])
 
     const GameResults = ({ item }) => {
@@ -101,7 +103,7 @@ const GameScreen = ({ navigation, route, game, SearchGameID }) => {
 
     return (
         <View>
-            <Text style={{ textAlign: "center" }}>{game.info.title}</Text>
+            <Text style={{ textAlign: "center" }}>{title}</Text>
             <FlatList data={game.deals} renderItem={GameResults} />
         </View>
     )
