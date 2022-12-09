@@ -22,7 +22,14 @@ function App() {
 
 const HomeScreen = ({ navigation }) => {
     const [search, setSearch] = useState("")
+    const [store, setStore] = useState([])
 
+    useEffect(() => {
+        fetch("https://www.cheapshark.com/api/1.0/stores")
+        .then((res) => res.json())
+        .then((json) => console.log(json))
+    })
+    
     return (
         <View>
             <TextInput
@@ -33,8 +40,12 @@ const HomeScreen = ({ navigation }) => {
             <Button title="Search"
                 onPress={() => navigation.navigate('Search', { searchText: search })}
             />
+
+            
+            
         </View>
     )
+
 }
 
 const SearchScreen = ({ navigation, route, SearchGameTitle, apiList }) => {
