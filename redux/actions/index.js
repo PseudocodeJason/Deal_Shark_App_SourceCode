@@ -7,10 +7,11 @@ export const SearchGameTitle = (name) =>({
     }
 })
 
-export const SearchGameID = (game) =>({
+export const SearchGameID = (game, store) =>({
     type: SEARCH_GAMEID,
     payload:{
-        game:game
+        game:game,
+        store:store
     }
 })
 export const SearchStore = (store) =>({

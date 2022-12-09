@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { SearchGameTitle, SearchGameID } from "./redux/actions";
+import { SearchGameTitle, SearchGameID, GetStore, SearchStore } from "./redux/actions";
 import { connect } from "react-redux";
 import HomeScreen from "./screens/HomeScreen";
 import SearchScreen from "./screens/SearchScreen";
@@ -25,20 +25,20 @@ function App() {
     )
 }
 
-const mapDispastchHome = {}
-const mapStateHome = (state) => ({})
+const mapDispastchHome = {GetStore}
+const mapStateHome = (state) => ({allStore: state.apiAllStores.allStores})
 const Home = connect(mapStateHome, mapDispastchHome)(HomeScreen)
 
 const mapDispastchTitle = { SearchGameTitle }
-const mapStateTitle = (state) => ({ apiList: state.apiSearch.apiList })
+const mapStateTitle = (state) => ({ apiList: state.apiSearch.apiList, store: state.apiAllStores.allStores})
 const SearchTitle = connect(mapStateTitle, mapDispastchTitle)(SearchScreen)
 
-const mapDispastchGame = { SearchGameID }
-const mapStateGame = (state) => ({ game: state.apiFindGame.game })
+const mapDispastchGame = { SearchGameID}
+const mapStateGame = (state) => ({ game: state.apiFindGame.game, store: state.apiAllStores.allStores})
 const Game = connect(mapStateGame, mapDispastchGame)(GameScreen)
 
-const mapDispastchStore = {}
-const mapStateStore = (state) => ({})
+const mapDispastchStore = {SearchStore}
+const mapStateStore = (state) => ({store: state.apiFindStores.store})
 const Store = connect(mapStateStore, mapDispastchStore)(StoreScreen)
 
 export default (App)

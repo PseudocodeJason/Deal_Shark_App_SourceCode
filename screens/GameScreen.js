@@ -1,15 +1,16 @@
 import { Button, FlatList, StyleSheet, Text, TextInput, View } from "react-native";
 import { useState, useEffect } from "react";
 
-const GameScreen = ({ navigation, route, game, SearchGameID }) => {
+const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
     const { gameID } = route.params
     const [title, setTitle] = useState("")
+    
 
     useEffect(() => {
         fetch("https://www.cheapshark.com/api/1.0/games?id=" + gameID)
             .then((res) => res.json())
             .then((json) => {
-                SearchGameID(json)
+                SearchGameID(json, store)
                 setTitle(json.info.title)
             })
     }, [])

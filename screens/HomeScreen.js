@@ -1,19 +1,18 @@
 import { Button, FlatList, TouchableHighlight, StyleSheet, Text, TextInput, View, Image } from "react-native";
 import { useState, useEffect } from "react";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation, GetStore, allStore }) => {
     const [search, setSearch] = useState("")
-    const [store, setStore] = useState([])
 
     useEffect(() => {
         fetch("https://www.cheapshark.com/api/1.0/stores")
             .then((res) => res.json())
-            .then((json) => setStore(json))
-    })
+            .then((json) => GetStore(json))
+    }, [])
 
     const GameShops = ({ item }) => {
         return (
-            <TouchableHighlight onClick={() => navigation.navigate('Store', {storeID: item.storeID})}>
+            <TouchableHighlight onPress={() => navigation.navigate('Store', {storeID: item.storeID})}>
                 <View style={styles.item}>
                     <Image source={{ uri: "https://www.cheapshark.com/" + item.images.logo }} style={{ width: 60, height: 60 }} />
                     <Text>{item.storeName}</Text>
@@ -33,7 +32,7 @@ const HomeScreen = ({ navigation }) => {
             <Button title="Search"
                 onPress={() => navigation.navigate('Search', { searchText: search })}
             />
-            <FlatList data={store} renderItem={GameShops} />
+            <FlatList data={allStore} renderItem={GameShops} />
         </View>
     )
 }
