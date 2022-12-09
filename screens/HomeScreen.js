@@ -3,6 +3,13 @@ import { useState, useEffect } from "react";
 
 const HomeScreen = ({ navigation }) => {
     const [search, setSearch] = useState("")
+    const [store, setStore] = useState([])
+
+    useEffect(() => {
+        fetch("https://www.cheapshark.com/api/1.0/stores")
+        .then((res) => res.json())
+        .then((json) => setStore(json))
+    })
 
     return (
         <View>
