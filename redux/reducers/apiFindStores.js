@@ -1,7 +1,7 @@
 import { SEARCH_STORE } from "../actionType";
 
 const initial_state = {
-    game: []
+    store: []
 }
 export default (state = initial_state, action)=>{
  
