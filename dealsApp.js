@@ -30,7 +30,7 @@ const mapStateHome = (state) => ({allStore: state.apiAllStores.allStores})
 const Home = connect(mapStateHome, mapDispastchHome)(HomeScreen)
 
 const mapDispastchTitle = { SearchGameTitle }
-const mapStateTitle = (state) => ({ apiList: state.apiSearch.apiList, store: state.apiAllStores.allStores})
+const mapStateTitle = (state) => ({ apiList: state.apiSearch.apiList})
 const SearchTitle = connect(mapStateTitle, mapDispastchTitle)(SearchScreen)
 
 const mapDispastchGame = { SearchGameID}
