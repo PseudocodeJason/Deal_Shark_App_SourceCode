@@ -9,11 +9,11 @@ const HomeScreen = ({ navigation }) => {
         fetch("https://www.cheapshark.com/api/1.0/stores")
             .then((res) => res.json())
             .then((json) => setStore(json))
-    })
+    }, [])
 
     const GameShops = ({ item }) => {
         return (
-            <TouchableHighlight onClick={() => navigation.navigate('Store', {storeID: item.storeID})}>
+            <TouchableHighlight onPress={() => navigation.navigate('Store', {storeID: item.storeID})}>
                 <View style={styles.item}>
                     <Image source={{ uri: "https://www.cheapshark.com/" + item.images.logo }} style={{ width: 60, height: 60 }} />
                     <Text>{item.storeName}</Text>
