@@ -1,4 +1,4 @@
-import { Button, FlatList, TouchableHighlight, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, FlatList, StyleSheet, Text, TextInput, View } from "react-native";
 import { useState, useEffect } from "react";
 
 const GameScreen = ({ navigation, route, game, SearchGameID }) => {
