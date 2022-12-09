@@ -8,7 +8,7 @@ const HomeScreen = ({ navigation }) => {
     useEffect(() => {
         fetch("https://www.cheapshark.com/api/1.0/stores")
         .then((res) => res.json())
-        .then((json) => console.log(json))
+        .then((json) => setStore(json))
     })
 
     return (
