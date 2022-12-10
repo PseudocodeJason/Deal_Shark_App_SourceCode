@@ -18,7 +18,7 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
     const GameResults = ({ item }) => {
         return (
             <View style={styles.item}>
-                <Text>Store Id: {item.storeID}</Text>
+                <Text>Store: {item.storeName}</Text>
                 <Text>Current Price: {item.price}</Text>
                 <Text>Retail Price: {item.retailPrice}</Text>
             </View>

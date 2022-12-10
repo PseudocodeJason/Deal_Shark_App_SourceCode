@@ -8,7 +8,7 @@ const HomeScreen = ({ navigation, GetStore, allStore }) => {
         fetch("https://www.cheapshark.com/api/1.0/stores")
             .then((res) => res.json())
             .then((json) => GetStore(json))
-    }, [])
+    }, [allStore == []])
 
     const GameShops = ({ item }) => {
         return (
