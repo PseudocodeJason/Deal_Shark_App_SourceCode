@@ -32,7 +32,7 @@ const HomeScreen = ({ navigation, GetStore, allStore }) => {
             <Button title="Search"
                 onPress={() => navigation.navigate('Search', { searchText: search })}
             />
-            <FlatList data={allStore} renderItem={GameShops} />
+            <FlatList data={allStore} renderItem={GameShops}/>
         </View>
     )
 }
