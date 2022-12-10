@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
-//Reducers
 import apiSearch from "./apiSearch";
 import apiFindGame from "./apiFindGame";
-import apiAllStores from "./apiAllStores";
 import apiFindStores from "./apiFindStores";
+import apiAllStores from "./apiAllStores";
+//Reducers
+
 
 
 export default combineReducers({apiSearch, apiFindGame, apiAllStores, apiFindStores});

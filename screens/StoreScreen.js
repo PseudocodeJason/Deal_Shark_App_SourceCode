@@ -5,7 +5,7 @@ const StoreScreen = ({navigation}) =>{
 
     const StoreRender = ({item}) =>{
         return(
-            <TouchableHighlight>
+            <TouchableHighlight onPress={() => navigation.navigate('Get store', { stores: item.gameID })}>
                 <View>
                     
                 </View>
