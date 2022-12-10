@@ -10,4 +10,7 @@ export const SEARCH_STORE = 'SEARCH_STORE'
 export const CLICK_URL = 'CLICK_URL'
 //Has all stores
 export const GET_STORE = 'GET_STORE'
+//yes or no buttons
+export const BUTTON_YES = 'BUTTON_YES'
+export const BUTTON_NO = 'BUTTON_NO'
 
