@@ -2,7 +2,18 @@ import { BUTTON_YES, BUTTON_NO } from "../actionType";
 
 
 const initial_state = {
-    yes: []
+    buttons: [{
+        text: 'Yes',
+        onPress: () => {
+         ToastAndroid.show("Card was deleted successfully", ToastAndroid.LONG)
+        },
+      },
+      {
+        text: 'No',
+        onPress: () => {
+          console.log('No was pressed');
+        },
+      },]
 }
 export default (state = initial_state, action)=>{
  
@@ -12,7 +23,7 @@ export default (state = initial_state, action)=>{
         console.log(storeName)
         return{
             ...state,
-            yes: goToURL
+            buttons: goToURL
         }
     }
     return state;
