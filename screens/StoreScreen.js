@@ -1,5 +1,6 @@
-import { Button, FlatList, TouchableHighlight, StyleSheet, Text, TextInput, View, Image } from "react-native";
+import { Button, FlatList, TouchableHighlight, StyleSheet, Text, TextInput, View, Image, Alert } from "react-native";
 import { useState, useEffect } from "react";
+import * as Linking from 'expo-linking';
 
 
 const StoreScreen = ({ navigation, route }) => {
@@ -14,7 +15,18 @@ const StoreScreen = ({ navigation, route }) => {
 
     const StoreRender = ({ item }) => {
         return (
-            <TouchableHighlight>
+            <TouchableHighlight onPress={() => Alert.alert('Confirm', 'You are about to leave the app', [{
+                text: 'Okay',
+                onPress: () => {
+                    Linking.openURL("https://www.cheapshark.com/redirect?dealID=" + item.dealID)
+                },
+              },
+              {
+                text: 'Cancel',
+                onPress: () => {
+                  console.log('No was pressed');
+                },
+              }])}>
                 <View style={styles.item}>
                     <Image source={{ uri: item.thumb }} style={{ width: 160, height: 60 }} />
                     <Text>Title: {item.title}</Text>
