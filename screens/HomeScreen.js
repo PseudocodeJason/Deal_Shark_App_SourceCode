@@ -44,13 +44,17 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         padding: 10,
         borderRadius: 4,
-        backgroundColor: 'white'
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        backgroundColor: 'orange'
     },
     input: {
         height: 44,
         padding: 10,
         marginTop: 10,
         marginBottom: 10,
+        width:200,
+        left:85,
         backgroundColor: '#e8e8e8',
     },
 
