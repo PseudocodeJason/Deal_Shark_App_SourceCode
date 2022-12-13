@@ -49,15 +49,12 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
                     <Text>Store: {item.storeName}</Text>
                     <Text>Current Price: {item.price}</Text>
                     <Text>Retail Price: {item.retailPrice}</Text>
-<<<<<<< HEAD
-=======
                     <Text style={{
                         color: Math.round(item.savings) >= 75 ? "#00ff1e" :
                             Math.round(item.savings) >= 50 ? "green" :
                                 Math.round(item.savings) >= 25 ? "orange" :
                                     "red"
                     }}>You Save {Math.round(item.savings)}%</Text>
->>>>>>> f52654773b2ae0c4e4a740d8fb4ca5e779ef4237
                 </View>
             </TouchableHighlight>
         )
@@ -72,10 +69,6 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
                     <Circle size={200} indeterminate={true} alignItems='center' />
                 </View>
             )}
-<<<<<<< HEAD
-            <Text style={{ textAlign: "center" }}>{title}</Text>
-            <FlatList data={game.deals} renderItem={GameResults} />
-=======
             {!isFetching && (
                 <View>
                     <Text style={{ textAlign: "center" }}>{title}</Text>
@@ -85,7 +78,6 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
                 </View>
             )}
 
->>>>>>> f52654773b2ae0c4e4a740d8fb4ca5e779ef4237
         </View>
     )
 
