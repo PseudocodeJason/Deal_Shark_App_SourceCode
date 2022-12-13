@@ -1,10 +1,11 @@
 import { Button, FlatList, TouchableHighlight, StyleSheet, Text, TextInput, View, Image } from "react-native";
 import { useState, useEffect } from "react";
+import {Circle} from 'react-native-progress';
 
 const SearchScreen = ({ navigation, route, SearchGameTitle, apiList }) => {
     const { searchText } = route.params
     const [search, setSearch] = useState("")
-
+    const [isFetching, setIsFetching] = useState("")
     const SearchResults = ({ item }) => {
 
         return (
@@ -20,9 +21,14 @@ const SearchScreen = ({ navigation, route, SearchGameTitle, apiList }) => {
     }
 
     useEffect(() => {
+        setIsFetching(true)
         fetch("https://www.cheapshark.com/api/1.0/games?title=" + searchText)
             .then((res) => res.json())
-            .then((json) => SearchGameTitle(json))
+            .then((json) => {
+                SearchGameTitle(json)
+                setIsFetching(false)
+            })
+            
     }, [])
     return (
         <View>
@@ -36,6 +42,11 @@ const SearchScreen = ({ navigation, route, SearchGameTitle, apiList }) => {
                     .then((res) => res.json())
                     .then((json) => SearchGameTitle(json))}
             />
+            {isFetching && (
+                <View>
+                 <Circle size={200} indeterminate={true} alignItems='center'/>
+                </View>
+            )}
             <FlatList data={apiList} renderItem={SearchResults} />
         </View>
     )
@@ -57,7 +68,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         backgroundColor: '#e8e8e8',
     },
-
 });
 
 export default SearchScreen
