@@ -1,16 +1,22 @@
 import { Button, FlatList, TouchableHighlight, StyleSheet, Text, TextInput, View, Image, Alert } from "react-native";
 import { useState, useEffect } from "react";
 import * as Linking from 'expo-linking';
+import {Circle} from 'react-native-progress';
 
 
 const StoreScreen = ({ navigation, route }) => {
     const [store, setStore] = useState([])
     const { storeID } = route.params
+    const [isFetching, setIsFetching] = useState("")
 
     useEffect(() => {
+        setIsFetching(true)
         fetch('https://www.cheapshark.com/api/1.0/deals?storeID=' + storeID)
             .then((res) => res.json())
-            .then((json) => setStore(json))
+            .then((json) => {
+                setStore(json)
+                setIsFetching(false)
+            })
     }, [])
 
     const StoreRender = ({ item }) => {
@@ -30,7 +36,7 @@ const StoreScreen = ({ navigation, route }) => {
                 <View style={styles.item}>
                     <Image source={{ uri: item.thumb }} style={{ width: 160, height: 60 }} />
                     <Text>Title: {item.title}</Text>
-                    <Text>Nomral Price: $ {item.normalPrice}</Text>
+                    <Text>Normal Price: $ {item.normalPrice}</Text>
                     <Text style={styles.red}>Sale Price: $ {item.salePrice}</Text>
                     <Text>{Math.round(item.savings)}% off</Text>
                     <Text style={{
@@ -46,6 +52,11 @@ const StoreScreen = ({ navigation, route }) => {
     return (
         <View>
             <Text>Available deals</Text>
+            {isFetching && (
+                <View>
+                 <Circle size={200} indeterminate={true} alignItems='center'/>
+                </View>
+            )}
             <FlatList data={store} renderItem={StoreRender} />
         </View>
     )
