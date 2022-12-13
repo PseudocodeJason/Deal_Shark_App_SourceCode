@@ -15,9 +15,10 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
         fetch("https://www.cheapshark.com/api/1.0/games?id=" + gameID)
             .then((res) => res.json())
             .then((json) => {
+                setIsFetching(false)
                 SearchGameID(json, store)
                 setTitle(json.info.title)
-                setIsFetching(false)
+                
             })
     }, [])
 
@@ -36,11 +37,6 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
                 },
               }])}>
                 <View style={styles.item}>
-                {isFetching && (
-                    <View>
-                        <Circle size={200} indeterminate={true} alignItems='center'/>
-                    </View>
-                )}
                     <Text>Store: {item.storeName}</Text>
                     <Text>Current Price: {item.price}</Text>
                     <Text>Retail Price: {item.retailPrice}</Text>
@@ -53,6 +49,11 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
 
     return (
         <View>
+            {isFetching && (
+                    <View>
+                        <Circle size={200} indeterminate={true} alignItems='center'/>
+                    </View>
+                )}
             <Text style={{ textAlign: "center" }}>{title}</Text>
             <FlatList data={game.deals} renderItem={GameResults} />
         </View>
