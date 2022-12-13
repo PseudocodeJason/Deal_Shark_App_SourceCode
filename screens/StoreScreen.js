@@ -34,6 +34,8 @@ const StoreScreen = ({ navigation, route }) => {
                 },
               }])}>
                 <View style={styles.item}>
+                    <Image style={{flex:1, width: 10, height: 70}}></Image>
+                    
                     <Image source={{ uri: item.thumb }} style={{ width: 160, height: 60 }} />
                     <Text>Title: {item.title}</Text>
                     <Text>Normal Price: $ {item.normalPrice}</Text>
