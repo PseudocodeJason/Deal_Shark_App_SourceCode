@@ -1,7 +1,7 @@
-import { Button, FlatList, StyleSheet, Text, TextInput, TouchableHighlight, View, Alert } from "react-native";
+import { Button, FlatList, StyleSheet, Text, TextInput, TouchableHighlight, View, Alert, Image } from "react-native";
 import { useState, useEffect } from "react";
 import * as Linking from 'expo-linking';
-import {Circle} from 'react-native-progress';
+import { Circle } from 'react-native-progress';
 
 const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
     const { gameID } = route.params
@@ -18,9 +18,17 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
                 setIsFetching(false)
                 SearchGameID(json, store)
                 setTitle(json.info.title)
-                
+
             })
     }, [])
+
+    const ImageRender = ({ item }) => {
+        return (
+            <View>
+                <Image source={{ uri: item.thumb }} style={{ width: 160, height: 90 }} />
+            </View>
+        )
+    }
 
     const GameResults = ({ item }) => {
         return (
@@ -29,33 +37,47 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
                 onPress: () => {
                     Linking.openURL("https://www.cheapshark.com/redirect?dealID=" + item.dealID)
                 },
-              },
-              {
+            },
+            {
                 text: 'Cancel',
                 onPress: () => {
-                  console.log('No was pressed');
+                    console.log('No was pressed');
                 },
-              }])}>
+            }])}>
                 <View style={styles.item}>
+
                     <Text>Store: {item.storeName}</Text>
                     <Text>Current Price: {item.price}</Text>
                     <Text>Retail Price: {item.retailPrice}</Text>
-                </View> 
+                    <Text style={{
+                        color: Math.round(item.savings) >= 75 ? "#00ff1e" :
+                            Math.round(item.savings) >= 50 ? "green" :
+                                Math.round(item.savings) >= 25 ? "orange" :
+                                    "red"
+                    }}>You Save {Math.round(item.savings)}%</Text>
+                </View>
             </TouchableHighlight>
         )
-           
-            
+
+
     }
 
     return (
         <View>
             {isFetching && (
-                    <View>
-                        <Circle size={200} indeterminate={true} alignItems='center'/>
-                    </View>
-                )}
-            <Text style={{ textAlign: "center" }}>{title}</Text>
-            <FlatList data={game.deals} renderItem={GameResults} />
+                <View>
+                    <Circle size={200} indeterminate={true} alignItems='center' />
+                </View>
+            )}
+            {!isFetching && (
+                <View>
+                    <Text style={{ textAlign: "center" }}>{title}</Text>
+                    <FlatList scrollEnabled={false}
+                        data={Object.values(game)} renderItem={ImageRender} />
+                    <FlatList data={game.deals} renderItem={GameResults} />
+                </View>
+            )}
+
         </View>
     )
 
