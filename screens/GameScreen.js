@@ -1,4 +1,4 @@
-import { Button, FlatList, StyleSheet, Text, TextInput, TouchableHighlight, View, Alert } from "react-native";
+import { Button, FlatList, StyleSheet, Text, TextInput, TouchableHighlight, View, Alert, Image } from "react-native";
 import { useState, useEffect } from "react";
 import * as Linking from 'expo-linking';
 import { Circle } from 'react-native-progress';
@@ -22,6 +22,14 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
             })
     }, [])
 
+    const ImageRender = ({ item }) => {
+        return (
+            <View>
+                <Image source={{ uri: item.thumb }} style={{ width: 160, height: 90 }} />
+            </View>
+        )
+    }
+
     const GameResults = ({ item }) => {
         return (
             <TouchableHighlight onPress={() => Alert.alert('Confirm', 'You are about to leave the app', [{
@@ -37,9 +45,19 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
                 },
             }])}>
                 <View style={styles.item}>
+
                     <Text>Store: {item.storeName}</Text>
                     <Text>Current Price: {item.price}</Text>
                     <Text>Retail Price: {item.retailPrice}</Text>
+<<<<<<< HEAD
+=======
+                    <Text style={{
+                        color: Math.round(item.savings) >= 75 ? "#00ff1e" :
+                            Math.round(item.savings) >= 50 ? "green" :
+                                Math.round(item.savings) >= 25 ? "orange" :
+                                    "red"
+                    }}>You Save {Math.round(item.savings)}%</Text>
+>>>>>>> f52654773b2ae0c4e4a740d8fb4ca5e779ef4237
                 </View>
             </TouchableHighlight>
         )
@@ -54,8 +72,20 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
                     <Circle size={200} indeterminate={true} alignItems='center' />
                 </View>
             )}
+<<<<<<< HEAD
             <Text style={{ textAlign: "center" }}>{title}</Text>
             <FlatList data={game.deals} renderItem={GameResults} />
+=======
+            {!isFetching && (
+                <View>
+                    <Text style={{ textAlign: "center" }}>{title}</Text>
+                    <FlatList scrollEnabled={false}
+                        data={Object.values(game)} renderItem={ImageRender} />
+                    <FlatList data={game.deals} renderItem={GameResults} />
+                </View>
+            )}
+
+>>>>>>> f52654773b2ae0c4e4a740d8fb4ca5e779ef4237
         </View>
     )
 
