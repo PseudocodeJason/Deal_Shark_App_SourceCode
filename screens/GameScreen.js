@@ -24,12 +24,9 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
 
     const ImageRender = ({ item }) => {
         return (
-            <View>
-                <Image source={{ uri: item.thumb }} style={{ width: 160, height: 90 }} />
-            </View>
+                <Image source={{ uri: item.thumb }} style={{ width: 160, height: 250, alignItems: 'center', left:20 }} />
         )
     }
-
     const GameResults = ({ item }) => {
         return (
             <TouchableHighlight onPress={() => Alert.alert('Confirm', 'You are about to leave the app', [{
@@ -63,18 +60,22 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
     }
 
     return (
-        <View>
+        <View style={{ flex: 2 }}>
             {isFetching && (
                 <View>
                     <Circle size={200} indeterminate={true} alignItems='center' />
                 </View>
             )}
             {!isFetching && (
-                <View>
+                <View style={{ flex: 1 }}>
                     <Text style={{ textAlign: "center" }}>{title}</Text>
-                    <FlatList scrollEnabled={false}
+                    <View style={{ flex: 1 }}>
+                        <FlatList scrollEnabled={false} height={250}
                         data={Object.values(game)} renderItem={ImageRender} />
-                    <FlatList data={game.deals} renderItem={GameResults} />
+                    </View>
+                    <View style={{ flex: 2 }}>
+                        <FlatList data={game.deals} renderItem={GameResults} />
+                    </View>
                 </View>
             )}
 
@@ -89,14 +90,17 @@ const styles = StyleSheet.create({
         margin: 5,
         borderColor: 'black',
         padding: 10,
-        borderRadius: 4,
-        backgroundColor: 'white'
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        backgroundColor: 'orange'
     },
     input: {
         height: 44,
         padding: 10,
         marginTop: 10,
         marginBottom: 10,
+        width: 200,
+        left: 85,
         backgroundColor: '#e8e8e8',
     },
 
