@@ -32,10 +32,16 @@ const StoreScreen = ({ navigation, route }) => {
                     <Text>Title: {item.title}</Text>
                     <Text>Nomral Price: $ {item.normalPrice}</Text>
                     <Text style={styles.red}>Sale Price: $ {item.salePrice}</Text>
-                    <Text>{Math.round(item.savings)}% off</Text>
                     <Text style={{
-                        color: item.metacriticScore >= 80 ? "green" :
-                            item.metacriticScore >= 65 ? "orange" :
+                        color: Math.round(item.savings) >= 75 ? "#00ff1e" :
+                        Math.round(item.savings) >= 50 ? "green" :
+                        Math.round(item.savings) >= 25 ? "orange" :
+                                "red"
+                    }}>{Math.round(item.savings)}% off</Text>
+                    <Text style={{
+                        color: item.metacriticScore >= 80 ? "#00ff1e" :
+                            item.metacriticScore >= 65 ? "green" :
+                            item.metacriticScore >= 50 ? "orange" :
                                 "red"
                     }}>Metacritic score: {item.metacriticScore}</Text>
                 </View>

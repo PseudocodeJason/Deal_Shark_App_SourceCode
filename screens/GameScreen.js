@@ -1,4 +1,4 @@
-import { Button, FlatList, StyleSheet, Text, TextInput, TouchableHighlight, View, Alert } from "react-native";
+import { Button, FlatList, StyleSheet, Text, TextInput, TouchableHighlight, View, Alert, Image } from "react-native";
 import { useState, useEffect } from "react";
 import * as Linking from 'expo-linking';
 
@@ -18,6 +18,14 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
             })
     }, [])
 
+    const ImageRender = ({ item }) => {
+        return( 
+            <View> 
+                <Image source={{ uri: item.thumb }} style={{ width: 160, height: 60 }} />
+            </View>
+        )
+    }
+
     const GameResults = ({ item }) => {
         return (
             <TouchableHighlight onPress={() => Alert.alert('Confirm', 'You are about to leave the app', [{
@@ -33,9 +41,16 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
                 },
               }])}>
                 <View style={styles.item}>
+                    
                     <Text>Store: {item.storeName}</Text>
                     <Text>Current Price: {item.price}</Text>
                     <Text>Retail Price: {item.retailPrice}</Text>
+                    <Text style={{
+                        color: Math.round(item.savings) >= 75 ? "#00ff1e" :
+                        Math.round(item.savings) >= 50 ? "green" :
+                        Math.round(item.savings) >= 25 ? "orange" :
+                                "red"
+                    }}>You Save {Math.round(item.savings)}%</Text>
                 </View> 
             </TouchableHighlight>
         )
@@ -46,6 +61,8 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
     return (
         <View>
             <Text style={{ textAlign: "center" }}>{title}</Text>
+            <FlatList scrollEnabled={false}
+            data={Object.values(game)} renderItem={ImageRender} />
             <FlatList data={game.deals} renderItem={GameResults} />
         </View>
     )

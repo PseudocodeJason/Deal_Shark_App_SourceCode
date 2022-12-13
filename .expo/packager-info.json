@@ -1,9 +1,9 @@
 {
-  "expoServerPort": null,
-  "packagerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19000,
+  "expoServerNgrokUrl": "https://bg-s8w.jason-ng-expo.cross-platform-group2-project.exp.direct",
+  "packagerNgrokUrl": "https://bg-s8w.jason-ng-expo.cross-platform-group2-project.exp.direct",
+  "ngrokPid": 19512,
   "packagerPid": null,
   "webpackServerPort": null
 }

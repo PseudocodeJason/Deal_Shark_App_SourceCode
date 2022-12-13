@@ -1,4 +1,4 @@
-import { Button, FlatList, TouchableHighlight, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, FlatList, TouchableHighlight, StyleSheet, Text, TextInput, View, Image } from "react-native";
 import { useState, useEffect } from "react";
 
 const SearchScreen = ({ navigation, route, SearchGameTitle, apiList }) => {
@@ -10,6 +10,7 @@ const SearchScreen = ({ navigation, route, SearchGameTitle, apiList }) => {
         return (
             <TouchableHighlight onPress={() => navigation.navigate('Game', { gameID: item.gameID })}>
                 <View style={styles.item}>
+                    <Image source={{ uri: item.thumb }} style={{ width: 160, height: 60 }} />
                     <Text>Title: {item.external}</Text>
                     <Text>Price: {item.cheapest}</Text>
                 </View>
