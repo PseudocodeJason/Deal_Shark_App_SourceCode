@@ -4,6 +4,7 @@ import * as Linking from 'expo-linking';
 import {Circle} from 'react-native-progress';
 
 
+
 const StoreScreen = ({ navigation, route }) => {
     const [store, setStore] = useState([])
     const { storeID } = route.params
@@ -34,7 +35,7 @@ const StoreScreen = ({ navigation, route }) => {
                 },
               }])}>
                 <View style={styles.item}>
-                    <Image style={{flex:1, width: 10, height: 70}}></Image>
+                    <Image></Image>
                     
                     <Image source={{ uri: item.thumb }} style={{ width: 160, height: 60 }} />
                     <Text>Title: {item.title}</Text>
