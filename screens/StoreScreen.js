@@ -57,7 +57,7 @@ const StoreScreen = ({ navigation, route }) => {
     }
 
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             <Text>Available deals</Text>
             {isFetching && (
                 <View>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        backgroundColor: 'orange'
+        backgroundColor: 'purple'
     },
     input: {
         height: 44,

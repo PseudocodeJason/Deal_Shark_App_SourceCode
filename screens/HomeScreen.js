@@ -23,7 +23,7 @@ const HomeScreen = ({ navigation, GetStore, allStore }) => {
     }
 
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             <TextInput
                 onChangeText={setSearch}
                 value={search}
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        backgroundColor: 'orange'
+        backgroundColor: 'purple'
     },
     input: {
         height: 44,

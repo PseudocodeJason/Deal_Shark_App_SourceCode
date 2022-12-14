@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         padding: 10,
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        backgroundColor: 'orange'
+        backgroundColor: 'purple'
     },
     input: {
         height: 44,
