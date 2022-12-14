@@ -31,7 +31,7 @@ const SearchScreen = ({ navigation, route, SearchGameTitle, apiList }) => {
             
     }, [])
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             <TextInput
                 onChangeText={setSearch}
                 value={search}
@@ -61,9 +61,10 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        backgroundColor: 'orange'
+        backgroundColor: 'purple'
     },
     input: {
+        
         height: 44,
         padding: 10,
         marginTop: 10,
