@@ -24,7 +24,7 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
 
     const ImageRender = ({ item }) => {
         return (
-                <Image source={{ uri: item.thumb }} style={{ width: 160, height: 250, alignItems: 'center', left:20 }} />
+                <Image source={{ uri: item.thumb }} style={{ width: "90%", height: 250, alignItems: 'center', left:20 , resizeMode:'contain'}} />
         )
     }
     const GameResults = ({ item }) => {
