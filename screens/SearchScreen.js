@@ -1,6 +1,6 @@
 import { Button, FlatList, TouchableHighlight, StyleSheet, Text, TextInput, View, Image } from "react-native";
 import { useState, useEffect } from "react";
-import {Circle} from 'react-native-progress';
+import { Circle } from 'react-native-progress';
 
 const SearchScreen = ({ navigation, route, SearchGameTitle, apiList }) => {
     const { searchText } = route.params
@@ -28,7 +28,7 @@ const SearchScreen = ({ navigation, route, SearchGameTitle, apiList }) => {
                 SearchGameTitle(json)
                 setIsFetching(false)
             })
-            
+
     }, [])
     return (
         <View style={{ flex: 1 }}>
@@ -44,10 +44,12 @@ const SearchScreen = ({ navigation, route, SearchGameTitle, apiList }) => {
             />
             {isFetching && (
                 <View>
-                 <Circle size={200} indeterminate={true} alignItems='center'/>
+                    <Circle size={200} indeterminate={true} alignItems='center' />
                 </View>
             )}
-            <FlatList data={apiList} renderItem={SearchResults} />
+            {!isFetching && (
+                <FlatList data={apiList} renderItem={SearchResults} />
+            )}
         </View>
     )
 }
@@ -64,13 +66,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'purple'
     },
     input: {
-        
+
         height: 44,
         padding: 10,
         marginTop: 10,
         marginBottom: 10,
-        width:200,
-        left:85,
+        width: 200,
+        left: 85,
         backgroundColor: '#e8e8e8',
     },
 });

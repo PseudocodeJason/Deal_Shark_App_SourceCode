@@ -1,7 +1,7 @@
 import { Button, FlatList, TouchableHighlight, StyleSheet, Text, TextInput, View, Image, Alert } from "react-native";
 import { useState, useEffect } from "react";
 import * as Linking from 'expo-linking';
-import {Circle} from 'react-native-progress';
+import { Circle } from 'react-native-progress';
 
 
 
@@ -27,13 +27,13 @@ const StoreScreen = ({ navigation, route }) => {
                 onPress: () => {
                     Linking.openURL("https://www.cheapshark.com/redirect?dealID=" + item.dealID)
                 },
-              },
-              {
+            },
+            {
                 text: 'Cancel',
                 onPress: () => {
-                  console.log('No was pressed');
+                    console.log('No was pressed');
                 },
-              }])}>
+            }])}>
                 <View style={styles.item}>
                     <Image source={{ uri: item.thumb }} style={{ width: 160, height: 60 }} />
                     <Text>Title: {item.title}</Text>
@@ -41,15 +41,15 @@ const StoreScreen = ({ navigation, route }) => {
                     <Text style={styles.red}>Sale Price: $ {item.salePrice}</Text>
                     <Text style={{
                         color: Math.round(item.savings) >= 75 ? "#00ff1e" :
-                        Math.round(item.savings) >= 50 ? "green" :
-                        Math.round(item.savings) >= 25 ? "orange" :
-                                "red"
+                                Math.round(item.savings) >= 50 ? "green" :
+                                Math.round(item.savings) >= 25 ? "orange" :
+                                    "red"
                     }}>{Math.round(item.savings)}% off</Text>
                     <Text style={{
                         color: item.metacriticScore >= 80 ? "#00ff1e" :
                             item.metacriticScore >= 65 ? "green" :
-                            item.metacriticScore >= 50 ? "orange" :
-                                "red"
+                                item.metacriticScore >= 50 ? "orange" :
+                                    "red"
                     }}>Metacritic score: {item.metacriticScore}</Text>
                 </View>
             </TouchableHighlight>
@@ -61,10 +61,12 @@ const StoreScreen = ({ navigation, route }) => {
             <Text>Available deals</Text>
             {isFetching && (
                 <View>
-                 <Circle size={200} indeterminate={true} alignItems='center'/>
+                    <Circle size={200} indeterminate={true} alignItems='center' />
                 </View>
             )}
-            <FlatList data={store} renderItem={StoreRender} />
+            {!isFetching && (
+                <FlatList data={store} renderItem={StoreRender} />
+            )}
         </View>
     )
 }
@@ -85,8 +87,8 @@ const styles = StyleSheet.create({
         padding: 10,
         marginTop: 10,
         marginBottom: 10,
-        width:200,
-        left:85,
+        width: 200,
+        left: 85,
         backgroundColor: '#e8e8e8',
     },
     red: {
