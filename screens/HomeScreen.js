@@ -1,22 +1,31 @@
-import { Button, FlatList, TouchableHighlight, StyleSheet, Text, TextInput, View, Image } from "react-native";
+import { Button, FlatList, TouchableHighlight, StyleSheet, Text, TextInput, View, Image, Animated } from "react-native";
 import { useState, useEffect } from "react";
 
 const HomeScreen = ({ navigation, GetStore, allStore }) => {
     const [search, setSearch] = useState("")
+    const [fadeIn] = useState(new Animated.Value(0));
 
     useEffect(() => {
         fetch("https://www.cheapshark.com/api/1.0/stores")
             .then((res) => res.json())
             .then((json) => GetStore(json))
     }, [])
+    useEffect(() => {
+        Animated.timing(
+            fadeIn, {
+                toValue: 1,
+                duration: 2500,
+                useNativeDriver: true,
+            }).start();
+    })
 
     const GameShops = ({ item }) => {
         return (
             <TouchableHighlight onPress={() => navigation.navigate('Store', {storeID: item.storeID})}>
-                <View style={styles.item}>
+                <Animated.View style={{...styles.item, opacity: fadeIn,}}>
                     <Image source={{ uri: "https://www.cheapshark.com/" + item.images.logo }} style={{ width: 60, height: 60 }} />
                     <Text>{item.storeName}</Text>
-                </View>
+                </Animated.View>
             </TouchableHighlight>
 
         )
