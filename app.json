@@ -2,7 +2,7 @@
   "expo": {
     "name": "Game Deal Shark",
     "slug": "game_deal_shark",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "orientation": "portrait",
     "icon": "./assets/8936045_shark_attack_breach_danger_ocean_icon.png",
     "userInterfaceStyle": "light",
