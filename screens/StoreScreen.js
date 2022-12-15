@@ -1,4 +1,4 @@
-import { Button, FlatList, TouchableHighlight, StyleSheet, Text, TextInput, View, Image, Alert } from "react-native";
+import { Animated, FlatList, TouchableHighlight, StyleSheet, Text, TextInput, View, Image, Alert } from "react-native";
 import { useState, useEffect } from "react";
 import * as Linking from 'expo-linking';
 import { Circle } from 'react-native-progress';
@@ -9,6 +9,7 @@ const StoreScreen = ({ navigation, route }) => {
     const [store, setStore] = useState([])
     const { storeID } = route.params
     const [isFetching, setIsFetching] = useState("")
+    const [fadeIn] = useState(new Animated.Value(0));
 
     useEffect(() => {
         setIsFetching(true)
@@ -19,6 +20,14 @@ const StoreScreen = ({ navigation, route }) => {
                 setIsFetching(false)
             })
     }, [])
+    useEffect(() => {
+        Animated.timing(
+            fadeIn, {
+                toValue: 1,
+                duration: 500,
+                useNativeDriver: true,
+            }).start();
+    })
 
     const StoreRender = ({ item }) => {
         return (
@@ -33,8 +42,8 @@ const StoreScreen = ({ navigation, route }) => {
                 onPress: () => {
                     console.log('No was pressed');
                 },
-            }])}>
-                <View style={styles.item}>
+              }])}>
+                <Animated.View style={{...styles.item, opacity: fadeIn,}}>
                     <Image source={{ uri: item.thumb }} style={{ width: 160, height: 60 }} />
                     <Text>Title: {item.title}</Text>
                     <Text>Normal Price: $ {item.normalPrice}</Text>
@@ -51,7 +60,7 @@ const StoreScreen = ({ navigation, route }) => {
                                 item.metacriticScore >= 50 ? "orange" :
                                     "red"
                     }}>Metacritic score: {item.metacriticScore}</Text>
-                </View>
+                </Animated.View>
             </TouchableHighlight>
         )
     }

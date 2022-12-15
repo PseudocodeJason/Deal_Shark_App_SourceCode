@@ -1,9 +1,10 @@
-import { Button, FlatList, StyleSheet, Text, TextInput, TouchableHighlight, View, Alert, Image } from "react-native";
+import { Button, FlatList, StyleSheet, Text, TextInput, TouchableHighlight, View, Alert, Image, Animated } from "react-native";
 import { useState, useEffect } from "react";
 import * as Linking from 'expo-linking';
 import { Circle } from 'react-native-progress';
 
 const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
+    const [fadeIn] = useState(new Animated.Value(0));
     const { gameID } = route.params
     const [isFetching, setIsFetching] = useState("")
     const [title, setTitle] = useState("")
@@ -18,10 +19,18 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
                 setIsFetching(false)
                 SearchGameID(json, store)
                 setTitle(json.info.title)
-
             })
-    }, [])
-
+    }, []);
+    useEffect(() => {
+        Animated.timing(
+            fadeIn, {
+                toValue: 1,
+                duration: 1000,
+                delay: 500,
+                useNativeDriver: true,
+            }).start();
+    })
+    
     const ImageRender = ({ item }) => {
         return (
                 <Image source={{ uri: item.thumb }} style={{ width: "90%", height: 250, alignItems: 'center', left:20 , resizeMode:'contain'}} />
@@ -41,8 +50,7 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
                     console.log('No was pressed');
                 },
             }])}>
-                <View style={styles.item}>
-
+                <Animated.View style={{...styles.item, opacity: fadeIn,}}>
                     <Text>Store: {item.storeName}</Text>
                     <Text>Current Price: {item.price}</Text>
                     <Text>Retail Price: {item.retailPrice}</Text>
@@ -52,7 +60,7 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
                                 Math.round(item.savings) >= 25 ? "orange" :
                                     "red"
                     }}>You Save {Math.round(item.savings)}%</Text>
-                </View>
+                </Animated.View>
             </TouchableHighlight>
         )
 
@@ -78,7 +86,6 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
                     </View>
                 </View>
             )}
-
         </View>
     )
 
