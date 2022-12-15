@@ -1,0 +1,17 @@
+style{
+    margin: 5;
+    padding: 10;
+    left: 50px;
+    direction: ltr;
+    width: 10; 
+    height: 70;
+
+}
+.btn{
+font-size: 18px;
+text-align: center;
+font-weight: bold;
+background: #7FFF00;
+width: 140px;
+border-radius: 5px;
+}
