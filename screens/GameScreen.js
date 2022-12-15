@@ -4,7 +4,7 @@ import * as Linking from 'expo-linking';
 import { Circle } from 'react-native-progress';
 
 const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
-    const [fadeIn] = useState(new Animated.Value(0));
+    const fadeIn = new Animated.Value(0)
     const { gameID } = route.params
     const [isFetching, setIsFetching] = useState("")
     const [title, setTitle] = useState("")
@@ -27,10 +27,9 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
             fadeIn, {
                 toValue: 1,
                 duration: 1000,
-                delay: 500,
                 useNativeDriver: true,
             }).start();
-    }, [])
+    })
     
     const ImageRender = ({ item }) => {
         return (
