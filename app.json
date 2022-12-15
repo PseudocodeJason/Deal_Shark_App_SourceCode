@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "game_deal_shark",
+    "name": "Game Deal Shark",
     "slug": "game_deal_shark",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/8936045_shark_attack_breach_danger_ocean_icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/nywAafDj6RtE_1242_2688.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,12 +22,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "foregroundImage": "./assets/8936045_shark_attack_breach_danger_ocean_icon.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.jason.t.game_deal_shark"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/8936045_shark_attack_breach_danger_ocean_icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "325ad8f5-490e-4995-993a-5fadf8cc49df"
+      }
     }
   }
 }
