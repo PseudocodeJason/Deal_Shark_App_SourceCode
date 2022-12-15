@@ -18,7 +18,7 @@ const HomeScreen = ({ navigation, GetStore, allStore }) => {
                 duration: 2500,
                 useNativeDriver: true,
             }).start();
-    })
+    }, [])
 
     const GameShops = ({ item }) => {
         return (

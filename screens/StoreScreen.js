@@ -28,7 +28,7 @@ const StoreScreen = ({ navigation, route }) => {
                 duration: 500,
                 useNativeDriver: true,
             }).start();
-    })
+    }, [])
 
     const StoreRender = ({ item }) => {
         return (

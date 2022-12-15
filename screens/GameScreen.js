@@ -30,7 +30,7 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
                 delay: 500,
                 useNativeDriver: true,
             }).start();
-    })
+    }, [])
     
     const ImageRender = ({ item }) => {
         return (
