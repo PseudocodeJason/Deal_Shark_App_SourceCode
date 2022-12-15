@@ -11,6 +11,7 @@ const HomeScreen = ({ navigation, GetStore, allStore }) => {
             .then((json) => GetStore(json))
     }, [])
     useEffect(() => {
+        console.log('trigger Home animation')
         Animated.timing(
             fadeIn, {
                 toValue: 1,

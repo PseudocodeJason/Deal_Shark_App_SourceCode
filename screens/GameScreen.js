@@ -22,6 +22,7 @@ const GameScreen = ({ navigation, route, game, SearchGameID, store }) => {
             })
     }, []);
     useEffect(() => {
+        console.log('trigger game animation')
         Animated.timing(
             fadeIn, {
                 toValue: 1,

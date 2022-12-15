@@ -21,6 +21,7 @@ const StoreScreen = ({ navigation, route }) => {
             })
     }, [])
     useEffect(() => {
+        console.log('trigger Store Screen')
         Animated.timing(
             fadeIn, {
                 toValue: 1,
